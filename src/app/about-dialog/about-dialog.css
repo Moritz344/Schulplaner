@@ -46,7 +46,7 @@
   width: 400px;
   background-color: var(--about-bg);
   z-index: 1003;
-  height: 500px;
+  height: 200px;
   border-radius: 10px;
 }
 
@@ -57,14 +57,14 @@
   display: flex;
   justify-content: center;
   font-size: 30px;
-  margin-top: 100px;
+  margin-top: 40px;
   margin-bottom: 0px;
 }
 
 .container-content p{
   display: flex;
   justify-content: center;
-  font-size: 20px;
+  font-size: 17px;
   margin-top: 0;
 }
 
