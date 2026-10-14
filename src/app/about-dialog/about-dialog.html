@@ -4,13 +4,8 @@
   <div class="container" animate.enter="enter-animation" animate.leave="leave-animation"> 
     <div class="container-content">
         <h1>{{ aboutData().name }} </h1>
-        <p style="color: var(--text-muted)">{{ aboutData().description }} </p>
-        <p>{{ aboutData().version }} </p>
-    </div>
-
-    <div class="options-container">
-      <button (click)="electron.openExternal('https://github.com/Moritz344')">Github</button>
-      <button>Test</button>
+        <p style="margin-bottom: -8px">{{ aboutData().version }} </p>
+        <p style="color: var(--text-muted);margin: 10px;text-align: center">{{ aboutData().description }} </p>
     </div>
 
     <div class="close" (click)="onClose()">
