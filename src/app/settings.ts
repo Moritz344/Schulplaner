@@ -77,10 +77,12 @@ export class Settings {
   }
 
   getGradeColor(grade: number) {
-    if (grade < 3) {
-      return "green";
-    } else if (grade <= 4) {
-      return "orange"
+    if (grade <= 6 && grade > 4) {
+      return "red";
+    } else if (grade <= 4 && grade >= 3) {
+      return "orange";
+    } else if (grade < 3 && grade > 0) {
+      return "green"
     } else {
       return "red"
     }
