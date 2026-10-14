@@ -52,6 +52,7 @@
   margin: 5px;
   right: 0px;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .header {
