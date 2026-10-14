@@ -6,6 +6,8 @@ import { buildSchedule, ScheduleSlot } from './schedule';
 import { TimetableSetup } from './timetable-setup/timetable-setup';
 import { DialogService } from '../dialog/dialog-service';
 
+// TODO: show homework and exams
+
 interface WeekDay {
   name: string,
   date: string
