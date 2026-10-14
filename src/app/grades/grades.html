@@ -3,7 +3,11 @@
     class="average-container">
     <button
     [class]="'circle-' + settings.getGradeColor(settings.averageGrade())"
-    >{{ settings.averageGrade() }} </button>
+    >
+    @if (settings.averageGrade() > 0) {
+      {{ settings.averageGrade() }}
+    }
+    </button>
   </div>
   <div class="container-options">
     <button class="reset-grade" (click)="onRemoveGrades()" [disabled]="settings.gradesData().length == 0">Alle Noten zurücksetzen</button>
