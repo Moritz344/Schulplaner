@@ -6,29 +6,46 @@ import { DialogService } from '../dialog/dialog-service';
 import { FormsModule } from '@angular/forms';
 import { ExamEntry } from '../types';
 
+interface SearchParams {
+  text: string,
+  status: number,
+  fk_subject: number
+}
+
 @Component({
   selector: 'app-exams',
   imports: [DatePipe,FormsModule],
   templateUrl: './exams.html',
   styleUrl: './exams.css',
 })
+
+
 export class Exams {
   public electron = inject(Electron);
   public settings = inject(Settings);
   public dialog = inject(DialogService)
 
-  public searchFilter = signal<number>(0);
-  public examsData = computed<ExamEntry[]>(() => {
-    const data = this.settings.examsData();
-
-    if (this.searchFilter() == 1) {
-      return data.filter((x: ExamEntry) => x.daysLeft! < 0);
-    } else if (this.searchFilter() == 2) {
-      return data.filter((x: ExamEntry) => x.daysLeft! > 0);
-    } else {
-      return data;
-    }
+  public searchParams = signal<SearchParams>({
+    text: "",
+    status: 0,
+    fk_subject: 0
   });
+  public examsData = computed<ExamEntry[]>(() => {
+    const { text, status,fk_subject } = this.searchParams();
+
+    const search = text.toLowerCase();
+
+    return this.settings.examsData().filter((x: ExamEntry) => {
+      const matchesText = search.length == 0 || x.description?.toLowerCase().includes(search);
+      const matchesStatus = status == 0 || (status == 1 && x.daysLeft! < 0) || (status == 2 && x.daysLeft! >= 0);
+      const matchesSubject = fk_subject == 0 || x.fk_subject === fk_subject;
+      return matchesText && matchesStatus && matchesSubject;
+    });
+  });
+
+  updateSearchParams(patch: Partial<SearchParams>) {
+    this.searchParams.update(params => ({ ...params, ...patch }));
+  }
 
   constructor() {
     this.settings.initExamsData();

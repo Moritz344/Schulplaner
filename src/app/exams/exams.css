@@ -37,11 +37,28 @@
 .slim-rect img.red {
   filter: brightness(0) saturate(100%) invert(29.4%) sepia(21.7%) saturate(1353.8%) hue-rotate(311.1deg) brightness(149.8%) contrast(118.3%);
 }
+
 .container-options {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
+  gap: 10px;
 }
+
+.container-options-left {
+  display: flex;
+  gap: 10px;
+}
+
+.container-options-right {
+  display: flex;
+}
+
+.container-options-middle {
+  display: flex;
+}
+
+
 .container-options button{
   background-color: var(--accent-color);
 }
