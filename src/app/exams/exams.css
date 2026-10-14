@@ -45,6 +45,7 @@
   gap: 10px;
 }
 
+
 .container-options-left {
   display: flex;
   gap: 10px;
@@ -73,6 +74,18 @@
   max-height: 80vh;
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 200px;
+}
+
+.placeholder h1{
+  font-size: 30px;
+  margin: 0;
 }
 
 .exam-item {
