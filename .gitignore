@@ -22,7 +22,7 @@
 *.tsbuildinfo
 
 
-student-planer.db
+*.db
 todo.md
 
 # Logs
