@@ -1,11 +1,11 @@
 import { Component,signal,inject,OnInit } from '@angular/core';
-import { Electron } from '../../electron';
-import { Settings } from '../../settings';
+import { Electron } from '../electron';
+import { Settings } from '../settings';
 import { DatePipe } from '@angular/common';
-import { Dialog } from '../../dialog/dialog';
+import { Dialog } from '../dialog/dialog';
 import { FormsModule } from '@angular/forms';
-import { HomeworkEntry } from '../../types';
-import { DialogService } from '../../dialog/dialog-service';
+import { HomeworkEntry } from '../types';
+import { DialogService } from '../dialog/dialog-service';
 
 @Component({
   selector: 'app-homework',
