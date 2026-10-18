@@ -4,25 +4,14 @@
       <span>Home</span></button>
     <button (click)="settings.view.set('timetable')" [class.selected]="settings.view() == 'timetable'"><img class="item-icon" src="timetable.svg">
       <span>Stundenplan</span></button>
+    <button (click)="settings.view.set('homework')" [class.selected]="settings.view() == 'homework'"><img class="item-icon" src="homework.svg">
+      <span>Hausaufgaben</span></button>
     <button (click)="settings.view.set('exams')" [class.selected]="settings.view() == 'exams'"><img class="item-icon" src="exams.svg">
       <span>Prüfungen</span></button>
+    <button (click)="settings.view.set('subjects')" [class.selected]="settings.view() == 'subjects'"><img class="item-icon" src="subjects.svg">
+      <span>Fächer</span></button>
     <button (click)="settings.view.set('grades')" [class.selected]="settings.view() == 'grades'"><img class="item-icon" src="grades.svg">
       <span>Noten</span></button>
-
-    <!--<div>
-      @for (s of settings.subjectData(); track $index) {
-        <button>
-          <img class="item-icon"
-          [class.green]="s.color == 'green'"
-          [class.blue]="s.color == 'blue'"
-          [class.yellow]="s.color == 'yellow'"
-          [class.gray]="s.color == 'gray'"
-          [class.red]="s.color == 'red'"
-          src="dot.svg"><span>{{ s.name }}</span>
-        </button>
-      }
-    </div>
-    -->
 
   </div>
 </div>

@@ -7,12 +7,15 @@ import { Timetable } from '../timetable/timetable';
 import { Exams } from '../exams/exams';
 import { Dialog } from '../dialog/dialog';
 import { AboutDialog } from '../about-dialog/about-dialog';
-import { Homework } from './homework/homework';
 import { DialogService } from '../dialog/dialog-service';
+import { Homework } from '../homework/homework';
+import { Subjects } from '../subjects/subjects';
+
+// TODO: implement home dashboard 
 
 @Component({
   selector: 'app-home',
-  imports: [Topbar,Leftbar,Grades,Timetable,Exams,Dialog,AboutDialog,Homework],
+  imports: [Topbar,Leftbar,Grades,Timetable,Exams,Dialog,AboutDialog,Subjects,Homework],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

@@ -2,13 +2,16 @@
 <app-leftbar></app-leftbar>
 
 @if (settings.view() == "home") {
-  <app-homework></app-homework>
 }@else if (settings.view() == "timetable") {
   <app-timetable></app-timetable>
 } @else if (settings.view() == "exams") {
   <app-exams></app-exams>
 } @else if (settings.view() == "grades") {
   <app-grades></app-grades>
+} @else if (settings.view() == "homework") {
+  <app-homework></app-homework>
+} @else if (settings.view() == "subjects") {
+  <app-subjects></app-subjects>
 }
 
 

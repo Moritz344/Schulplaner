@@ -2,12 +2,14 @@ import { Injectable,signal,inject } from '@angular/core';
 import { HomeworkEntry,ExamEntry,TimetableConfig,TimetableEntry } from './types';
 import { Electron } from './electron';
 
+type Tab = "timetable" | "grades" | "home" | "exams" | "homework" | "subjects";
+
 @Injectable({
   providedIn: 'root',
 })
 export class Settings {
   public electron = inject(Electron);
-  public view = signal<"timetable" | "grades" | "home" | "exams">("home");
+  public view = signal<Tab>("subjects");
   public showAbout = signal<boolean>(false);
 
   public homeworkData = signal<HomeworkEntry[]>([]);
