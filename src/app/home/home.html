@@ -2,6 +2,7 @@
 <app-leftbar></app-leftbar>
 
 @if (settings.view() == "home") {
+  <app-dashboard></app-dashboard>
 }@else if (settings.view() == "timetable") {
   <app-timetable></app-timetable>
 } @else if (settings.view() == "exams") {

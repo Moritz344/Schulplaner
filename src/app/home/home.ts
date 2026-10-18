@@ -10,12 +10,13 @@ import { AboutDialog } from '../about-dialog/about-dialog';
 import { DialogService } from '../dialog/dialog-service';
 import { Homework } from '../homework/homework';
 import { Subjects } from '../subjects/subjects';
+import { Dashboard } from '../dashboard/dashboard';
 
-// TODO: implement home dashboard 
+// TODO: implement dashboard 
 
 @Component({
   selector: 'app-home',
-  imports: [Topbar,Leftbar,Grades,Timetable,Exams,Dialog,AboutDialog,Subjects,Homework],
+  imports: [Topbar,Leftbar,Grades,Timetable,Exams,Dialog,AboutDialog,Subjects,Homework,Dashboard],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

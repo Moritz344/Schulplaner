@@ -1,0 +1,9 @@
+.container {
+  position: absolute;
+  top: 60px;
+  left: 210px;
+  right: 10px;
+  margin: 10px;
+  width: auto;
+  user-select: none;
+}
