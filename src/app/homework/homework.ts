@@ -1,4 +1,4 @@
-import { Component,signal,inject,OnInit } from '@angular/core';
+import { Component,signal,inject,OnInit,computed } from '@angular/core';
 import { Electron } from '../electron';
 import { Settings } from '../settings';
 import { DatePipe } from '@angular/common';
@@ -6,6 +6,12 @@ import { Dialog } from '../dialog/dialog';
 import { FormsModule } from '@angular/forms';
 import { HomeworkEntry } from '../types';
 import { DialogService } from '../dialog/dialog-service';
+
+interface SearchParams {
+  text: string,
+  status: 1 | 0 | -1,
+  fk_subject: number
+}
 
 @Component({
   selector: 'app-homework',
@@ -17,15 +23,36 @@ export class Homework implements OnInit {
   public electron = inject(Electron);
   public settings = inject(Settings);
   public dialog = inject(DialogService);
-  public homeworkData = this.settings.homeworkData;
   public today = new Date()
   public days = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
+
+  public searchParams = signal<SearchParams>({
+    text: "",
+    status: -1,
+    fk_subject: 0
+  });
+  public homeworkData = computed<HomeworkEntry[]>(() => {
+    const { text, status,fk_subject } = this.searchParams();
+
+    const search = text.toLowerCase();
+
+    return this.settings.homeworkData().filter((x: HomeworkEntry) => {
+      const matchesText = search.length == 0 || x.name?.toLowerCase().includes(search);
+      const matchesStatus = status == -1 || +x.completed == status;
+      return matchesText && matchesStatus;
+    });
+  });
+
+  updateSearchParams(patch: Partial<SearchParams>) {
+    this.searchParams.update(params => ({ ...params, ...patch }));
+  }
+
 
   constructor() {
   }
 
   ngOnInit(): void {
-    this.settings.initHomeworkData();
+    this.settings.initHomeworkData().then(() => console.log(this.homeworkData()) );
   }
 
   onDeleteHomework(homework: HomeworkEntry) {

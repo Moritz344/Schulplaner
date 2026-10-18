@@ -11,6 +11,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 100px;
+}
+
+.slim-rect {
+  display: flex;
+}
+
+.slim-rect img {
+  display: inline-block;
+  width: 4px;
+  height: 80px;
+  border-radius: 2px;
+  background: #fff;
+  margin-right: 10px;
 }
 
 .placeholder h1{
@@ -56,7 +70,6 @@
   gap: 10px;
   width: 100%;
   box-sizing: border-box;
-  background-color: var(--bg-card);
   height: auto;
   max-height: 92vh;
   overflow-y: scroll;
@@ -76,6 +89,33 @@
   justify-content: space-between;
 }
 
+.container-options {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+
+.container-options-left {
+  display: flex;
+  gap: 10px;
+}
+
+.container-options-right {
+  display: flex;
+}
+
+.container-options-middle {
+  display: flex;
+}
+
+.left-content {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
 .homework-item-row-1 .right-items {
   display: flex;
   flex-direction: row;
@@ -87,10 +127,9 @@
 }
 
 .subject-name {
-  margin-left: 60px;
   float: left;
   color: var(--text-muted);
-  margin-top: -25px;
+  margin-left: 5px;
 }
 
 .homework-name {
@@ -110,6 +149,7 @@ hr{
 
 .homework-item {
   display: flex;
+  flex-direction: row;
 }
 
 
@@ -135,7 +175,7 @@ hr{
   display: flex;
   background-color: black;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 25px;
   width: 30px;
   height: 20px;
 }

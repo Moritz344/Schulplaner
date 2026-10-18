@@ -1,15 +1,40 @@
 <div class="container">
   <div class="homework-container">
-    <div class="homework-top">
-      <button (click)="onAddHomework()" class="new-homework">Neue Hausaufgabe</button>
+    <div class="container-options">
+      <div class="container-options-left">
+        <select [ngModel]="searchParams().status" (ngModelChange)="updateSearchParams({ status: $event })">
+          <option [ngValue]="-1">Alle</option>
+          <option [ngValue]="0">Offen</option>
+          <option [ngValue]="1">Erledigt</option>
+        </select>
+      </div>
+      <div class="container-options-middle">
+        <input
+          style="font-size: 20px"
+          spellcheck="false"
+          [ngModel]="searchParams().text"
+          (ngModelChange)="updateSearchParams({ text: $event })"
+          placeholder="Suche...">
+      </div>
+      <div class="container-options-right">
+        <button (click)="onAddHomework()">Neue Hausaufgabe</button>
+      </div>
     </div>
     @if (homeworkData().length > 0) {
       @for (h of homeworkData(); track $index) {
+      <div style="background-color: var(--bg-card);padding: 10px;border-radius: 10px">
         <div class="homework-item">
+          <div class="slim-rect">
+            <img class="item-icon" [class]="h.subjectData.color" src="dot.svg">
+          </div>
           <input type="checkbox" [(ngModel)]="h.completed" (change)="updateCompletedStatus(h)" [checked]="false">
-          <img class="item-icon" [class]="h.subjectData.color" src="dot.svg">
-          <div class="homework-item-row-1">
+          <div class="left-content">
             <span class="homework-name" [class.completed]="h.completed" >{{ h.name }}</span>
+            @if (h.subjectData) {
+              <span class="subject-name">{{ h.subjectData.name }}</span>
+            }
+          </div>
+          <div class="homework-item-row-1">
             <div class="right-items">
               @if (h.isToday) {
                 <span>heute um {{ h.due_date | date:'HH:mm' }} Uhr</span>
@@ -20,10 +45,7 @@
             </div>
           </div>
         </div>
-          @if (h.subjectData) {
-            <span class="subject-name">{{ h.subjectData.name }}</span>
-          }
-          <hr>
+      </div>
       }
     }@else {
       <div class="placeholder">
