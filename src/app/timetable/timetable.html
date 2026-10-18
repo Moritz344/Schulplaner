@@ -30,11 +30,7 @@
                   <div class="subject-color-container">
                     <div class="slim-rect">
                       <img 
-                      [class.green]="subject.color == 'green'"
-                      [class.blue]="subject.color == 'blue'"
-                      [class.yellow]="subject.color == 'yellow'"
-                      [class.gray]="subject.color == 'gray'"
-                      [class.red]="subject.color == 'red'"
+                      [class]="subject.color"
                       src="dot.svg" >
                     </div>
                   <div class="lesson-content">
