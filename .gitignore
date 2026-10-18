@@ -24,6 +24,7 @@
 
 *.db
 todo.md
+designs
 
 # Logs
 npm-debug.log*
