@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="container-options">
+    <button>Neues Fach</button>
+  </div>
+  <div class="subjects-container">
+    @for (subject of settings.subjectData(); track $index) {
+      <div class="subject-block">
+        <div class="subject-color">
+          <div class="slim-rect">
+            <img 
+            [class]="subject.color"
+            src="dot.svg" >
+          </div>
+        </div>
+        <div class="subject-content">
+          <span>{{ subject.name }}</span>
+          <div class="bottom-content">
+            @for (info of subjectInfo(); track $index) {
+              @if (info.fk_subject == subject.id) {
+              <span>
+                @if (info.grades > 0) {
+                  {{ info.grades }} Noten
+                }
+                @if (info.exams > 0) {
+                  {{ info.exams }} Prüfungen
+                }
+
+                @if (info.homework > 0) {
+                  {{ info.homework }} Hausaufgaben
+                }
+                 </span>
+              }
+            }
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>
