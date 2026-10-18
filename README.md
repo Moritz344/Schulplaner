@@ -1,6 +1,10 @@
 <h1 align="center"> 
   Schulplaner
 </h1>
+
+> [!IMPORTANT]
+> **Die App ist noch in Entwicklung**
+
 <img width="1240" height="869" alt="1" src="https://github.com/user-attachments/assets/925e8510-3d5c-487c-b101-016fa9d3d13b" />  
 
 <details>
