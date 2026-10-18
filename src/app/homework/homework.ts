@@ -39,7 +39,8 @@ export class Homework implements OnInit {
     return this.settings.homeworkData().filter((x: HomeworkEntry) => {
       const matchesText = search.length == 0 || x.name?.toLowerCase().includes(search);
       const matchesStatus = status == -1 || +x.completed == status;
-      return matchesText && matchesStatus;
+      const matchesSubject = fk_subject == 0 || fk_subject == x.subjectData.id;
+      return matchesText && matchesStatus && matchesSubject;
     });
   });
 

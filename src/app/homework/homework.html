@@ -7,6 +7,12 @@
           <option [ngValue]="0">Offen</option>
           <option [ngValue]="1">Erledigt</option>
         </select>
+        <select [ngModel]="searchParams().fk_subject" (ngModelChange)="updateSearchParams({ fk_subject: $event })">
+          <option [ngValue]="0">Alle</option>
+          @for (subject of settings.subjectData(); track $index) {
+            <option [ngValue]="subject.id">{{ subject.name }}</option>
+          }
+        </select>
       </div>
       <div class="container-options-middle">
         <input
