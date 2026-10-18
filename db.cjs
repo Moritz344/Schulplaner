@@ -51,7 +51,7 @@ db.exec(`CREATE TABLE IF NOT EXISTS exams (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     fk_subject INTEGER REFERENCES subjects(id) ON DELETE CASCADE,
     description TEXT,
-    due_date INTEGER
+    date INTEGER
   )
 `);
 
