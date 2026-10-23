@@ -4,7 +4,7 @@
   </div>
   <div class="subjects-container">
     @for (subject of settings.subjectData(); track $index) {
-      <div class="subject-block">
+      <div (click)="onViewSubjectDetails(subject)" class="subject-block">
         <div class="subject-color">
           <div class="slim-rect">
             <img 
@@ -12,10 +12,10 @@
             src="dot.svg" >
           </div>
         </div>
-        <div class="subject-content">
+        <div  class="subject-content">
           <span>{{ subject.name }}</span>
           <div class="bottom-content">
-            @for (info of subjectInfo(); track $index) {
+            @for (info of settings.subjectExtraData(); track $index) {
               @if (info.fk_subject == subject.id) {
               <span>
                 @if (info.grades > 0) {
@@ -26,7 +26,7 @@
                 }
 
                 @if (info.homework > 0) {
-                  {{ info.homework }} Hausaufgaben
+                  {{ info.homework }} HA
                 }
                  </span>
               }
