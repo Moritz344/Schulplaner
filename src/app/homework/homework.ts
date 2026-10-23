@@ -53,7 +53,6 @@ export class Homework implements OnInit {
   }
 
   ngOnInit(): void {
-    this.settings.initHomeworkData().then(() => console.log(this.homeworkData()) );
   }
 
   onDeleteHomework(homework: HomeworkEntry) {
