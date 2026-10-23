@@ -8,6 +8,14 @@ export interface HomeworkEntry {
   completed: boolean
 }
 
+export interface SubjectExtraDataEntry {
+  fk_subject: number,
+  grades: number,
+  exams: number,
+  homework: number,
+  averageGrade?: number
+}
+
 export interface TimetableConfig {
   id: number,
   hour_length: number | null,
