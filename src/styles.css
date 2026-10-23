@@ -66,6 +66,26 @@ button:disabled {
   cursor: not-allowed;
 }
 
+.slim-rect img.green {
+  filter: brightness(0) saturate(100%) invert(41%) sepia(50.1%) saturate(318.8%) hue-rotate(74.7deg) brightness(129.5%) contrast(144.6%);
+}
+
+.slim-rect img.blue {
+  filter: brightness(0) saturate(100%) invert(52.5%) sepia(50.9%) saturate(1143.8%) hue-rotate(172deg) brightness(84.8%) contrast(94.5%);
+}
+
+.slim-rect img.yellow {
+  filter: brightness(0) saturate(100%) invert(44.2%) sepia(51.2%) saturate(553%) hue-rotate(14.5deg) brightness(166.7%) contrast(99%);
+}
+
+.slim-rect img.gray {
+  filter: brightness(0) invert(60.4%);
+}
+
+.slim-rect img.red {
+  filter: brightness(0) saturate(100%) invert(29.4%) sepia(21.7%) saturate(1353.8%) hue-rotate(311.1deg) brightness(149.8%) contrast(118.3%);
+}
+
 button {
   background-color: var(--ghost);
   color: white;
