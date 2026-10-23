@@ -24,8 +24,17 @@
   height: 150px;
   width: 150px;
   flex: 0 0 auto;
-  font-size: 30px;
+  font-size: 50px;
 }
+
+.average-container button:hover{
+  background-color: var(--green-button);
+}
+
+.average-container button:active{
+  transform: none;
+}
+
 
 .grades-container {
   display: flex;
