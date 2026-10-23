@@ -1,8 +1,8 @@
 import { Injectable,signal,inject } from '@angular/core';
-import { HomeworkEntry,ExamEntry,TimetableConfig,TimetableEntry } from './types';
+import { HomeworkEntry,ExamEntry,TimetableConfig,TimetableEntry,GradeEntry, SubjectEntry,SubjectExtraDataEntry } from './types';
 import { Electron } from './electron';
 
-type Tab = "timetable" | "grades" | "home" | "exams" | "homework" | "subjects";
+type Tab = "timetable" | "grades" | "home" | "exams" | "homework" | "subjects" | "subject-details";
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +18,9 @@ export class Settings {
   public averageGrade = signal<number>(0);
   public subjectData = signal<any[]>([]);
   public timetableData = signal<TimetableEntry[]>([]);
+  public subjectExtraData = signal<SubjectExtraDataEntry[]>([])
+
+  public selectedSubject = signal<SubjectEntry | null>(null);
 
   public timetableConfig = signal<TimetableConfig>({
     id: 0,
@@ -29,8 +32,10 @@ export class Settings {
   });
 
   constructor() {
-    this.initSubjectsData();
-    this.initGradesData();
+    this.initGradesData().then(() => {
+      this.initExamsData();
+      this.initHomeworkData();
+    });
   }
 
   async initHomeworkData() {
@@ -63,15 +68,54 @@ export class Settings {
     if (this.gradesData().length == 0 ) {
       return;
     }
-    let sumOfAllGrades = this.gradesData().reduce((acc,currentValue) => acc + currentValue.grade,0)
-    let gradesQuantity = this.gradesData().length;
+    const sumOfAllGrades = this.gradesData().reduce((acc,currentValue) => acc + currentValue.grade,0)
+    const gradesQuantity = this.gradesData().length;
     const averageGradeNotRounded = (sumOfAllGrades / gradesQuantity).toFixed(2);
     this.averageGrade.set(Number(averageGradeNotRounded))
-    
+  }
+
+  getAverageGradeForSubject(id: number | undefined) {
+    if (!id) {
+      return 0;
+    }
+
+    const allGradesEntries = this.gradesData().filter((grade: GradeEntry) => grade.fk_subject == id)
+    if (allGradesEntries.length == 0) {
+      return 0;
+    }
+
+    const sumOfAllGrades = allGradesEntries.reduce((acc,currentValue) => acc + currentValue.grade,0);
+    const gradesQuantity = allGradesEntries.length;
+    return (sumOfAllGrades / gradesQuantity).toFixed(2);
   }
 
   async initSubjectsData() {
     this.subjectData.set(await this.electron.getSubjects());
+    this.initSubjectExtraData();
+  }
+
+  private getInfoAmountFromSubjectId(list: any,id: number) {
+    const entry = list.filter((x: any) => x.fk_subject == id);
+    return Number(entry.length);
+  }
+
+  initSubjectExtraData() {
+    const data = [];
+    for (const subject of this.subjectData()) {
+      const grades = this.getInfoAmountFromSubjectId(this.gradesData(),subject.id);
+      const exams = this.getInfoAmountFromSubjectId(this.examsData(),subject.id);
+      const homework = this.getInfoAmountFromSubjectId(this.homeworkData(),subject.id);
+      const averageGrade = this.getAverageGradeForSubject(subject?.id);
+      const info = {
+        fk_subject: subject.id,
+        grades,
+        exams,
+        homework,
+        averageGrade: Number(averageGrade)
+      }
+      data.push(info);
+    }
+    this.subjectExtraData.set(data);
   }
 
   getSubjectDataFromId(id: number) {
