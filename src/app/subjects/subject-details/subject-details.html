@@ -1,0 +1,34 @@
+<div class="container">
+  <button style="position: absolute; left: 0px" (click)="onBack()"><img class="left-arrow" src="arrow.svg"></button>
+  <div class="top-container">
+    <div class="slim-rect">
+      <img class="item-icon"
+      [class]="settings.selectedSubject()?.color"
+      src="dot.svg">
+    </div>
+      <span style="font-size: 35px">{{ settings.selectedSubject()?.name }}</span>
+  </div>
+  <div class="top-row-data-container">
+    <div class="info-container">
+      <span class="info-top-text">Notendurschnitt</span>
+      @if (extraSubjectData().averageGrade == 0) {
+        Keine Noten eingetragen!
+      }@else {
+        <span class="info-main-text">{{ extraSubjectData()?.averageGrade }}</span>
+      }
+    </div>
+
+    <div class="number-grades">
+    </div>
+
+    <div class="number-homework">
+    </div>
+
+    <div class="next-exam">
+    </div>
+
+  </div>
+
+  <div class="center-row-container"></div>
+  <div class="right-row-container"></div>
+</div>

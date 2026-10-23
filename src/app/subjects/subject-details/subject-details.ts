@@ -1,0 +1,38 @@
+import { Component,inject,signal } from '@angular/core';
+import { Settings } from '../../settings';
+import { SubjectExtraDataEntry } from '../../types';
+
+@Component({
+  selector: 'app-subject-details',
+  imports: [],
+  templateUrl: './subject-details.html',
+  styleUrl: './subject-details.css',
+})
+export class SubjectDetails {
+  public settings = inject(Settings)
+  public extraSubjectData = signal<SubjectExtraDataEntry>({
+    fk_subject: 0,
+    exams: 0,
+    grades: 0,
+    homework: 0,
+    averageGrade: 0
+  });
+
+  constructor() {
+    this.setExtraSubjectData();
+  }
+
+  setExtraSubjectData() {
+    const extraData = this.settings.subjectExtraData().find((subject: SubjectExtraDataEntry) => subject.fk_subject == this.settings.selectedSubject()?.id);
+    if (!extraData) { return; }
+    this.extraSubjectData.set(extraData)
+    console.log(this.extraSubjectData())
+  }
+
+  onBack() {
+    this.settings.selectedSubject.set(null);
+    this.settings.view.set("subjects");
+  }
+
+
+}
