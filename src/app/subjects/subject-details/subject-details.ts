@@ -1,6 +1,6 @@
 import { Component,inject,signal } from '@angular/core';
 import { Settings } from '../../settings';
-import { SubjectExtraDataEntry } from '../../types';
+import { ExamEntry, SubjectExtraDataEntry } from '../../types';
 
 @Component({
   selector: 'app-subject-details',
@@ -17,9 +17,23 @@ export class SubjectDetails {
     homework: 0,
     averageGrade: 0
   });
+  public closestExam = signal<string>("");
 
   constructor() {
     this.setExtraSubjectData();
+    this.setClosestExamData();
+  }
+
+  setClosestExamData() {
+    const closestExam = this.settings.getClosestExamForSubject(this.extraSubjectData().fk_subject);
+    if (!closestExam || !closestExam?.date) {
+      return;
+    }
+    const date = new Date(closestExam.date);
+    const dayName = date.toLocaleDateString('de-DE', { weekday: 'short' });
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    this.closestExam.set(dayName + ", " + day + "." + month)
   }
 
   setExtraSubjectData() {
