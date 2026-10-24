@@ -8,24 +8,50 @@
     </div>
       <span style="font-size: 35px">{{ settings.selectedSubject()?.name }}</span>
   </div>
-  <div class="top-row-data-container">
+  <div class="top-row-container">
     <div class="info-container">
       <span class="info-top-text">Notendurschnitt</span>
-      @if (extraSubjectData().averageGrade == 0) {
-        Keine Noten eingetragen!
-      }@else {
-        <span class="info-main-text">{{ extraSubjectData()?.averageGrade }}</span>
-      }
+        <span class="info-main-text">
+        @if (extraSubjectData().averageGrade == 0) {
+          /
+        }@else {
+          {{ extraSubjectData()?.averageGrade }}
+        }
+        </span>
     </div>
 
-    <div class="number-grades">
-    </div>
+   <div class="info-container">
+    <div class="info-top-text">Hausaufgaben (gesamt)</div>
+    <div class="info-main-text">
+    @if (extraSubjectData()?.homework == 0) {
+      /
+    }@else {
+      {{ extraSubjectData()?.homework }}
+    }
+      </div>
+   </div>
 
-    <div class="number-homework">
+   <div class="info-container">
+    <div class="info-top-text">Noten</div>
+    <div class="info-main-text">
+    @if (extraSubjectData()?.grades == 0) {
+      /
+    }@else {
+      {{ extraSubjectData()?.grades }}
+    }
     </div>
+   </div>
 
-    <div class="next-exam">
+   <div class="info-container">
+    <div class="info-top-text">Nächste Prüfung</div>
+    <div class="info-main-text">
+    @if (closestExam()) {
+      {{ closestExam() }}
+    }@else {
+      /
+    }
     </div>
+   </div>
 
   </div>
 
