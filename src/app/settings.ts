@@ -99,6 +99,20 @@ export class Settings {
     return Number(entry.length);
   }
 
+  getClosestExamForSubject(id: number) {
+    if (this.examsData().length == 0) { return; }
+    const examsWithSubject = this.examsData().filter(x => x.fk_subject == id)
+    const examsWithSubjectDaysLeft = examsWithSubject.map(x => x.daysLeft)
+    let min = 0;
+    for (let i=0;i<examsWithSubjectDaysLeft.length;i++) {
+      const num = examsWithSubjectDaysLeft[i]!
+      if (num > min && num < min) {
+        min = num;
+      }
+    }
+    return examsWithSubject.find(x => x.daysLeft == min);
+  }
+
   initSubjectExtraData() {
     const data = [];
     for (const subject of this.subjectData()) {
@@ -111,7 +125,7 @@ export class Settings {
         grades,
         exams,
         homework,
-        averageGrade: Number(averageGrade)
+        averageGrade: Number(averageGrade),
       }
       data.push(info);
     }
@@ -154,7 +168,7 @@ export class Settings {
     this.examsData.update(exam => 
       exam.map(item => ({
         ...item,
-        daysLeft: Math.ceil((Number(item.date) - Date.now()) / 86400000) || 0,
+        daysLeft: item.date ? new Date(item.date).getDate() - new Date().getDate() : -1,
         subjectData: this.getSubjectDataFromId(item.fk_subject)
       }))
     )
