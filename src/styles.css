@@ -66,6 +66,28 @@ button:disabled {
   cursor: not-allowed;
 }
 
+
+.circle-orange{
+  background-color: var(--orange);
+}
+
+.circle-orange:hover {
+  background-color: var(--orange-hover);
+}
+
+.circle-green {
+  background-color: var(--green-button)
+}
+.circle-green:hover {
+  background-color: var(--green-hover);
+}
+
+.circle-red {
+  background-color: var(--danger);
+}
+.circle-red:hover {
+  background-color: var(--danger-hover);
+}
 .slim-rect img.green {
   filter: brightness(0) saturate(100%) invert(41%) sepia(50.1%) saturate(318.8%) hue-rotate(74.7deg) brightness(129.5%) contrast(144.6%);
 }
