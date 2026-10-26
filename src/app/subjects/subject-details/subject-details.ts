@@ -18,10 +18,17 @@ export class SubjectDetails {
     averageGrade: 0
   });
   public closestExam = signal<string>("");
+  public grades = signal<number[]>([]);
 
   constructor() {
     this.setExtraSubjectData();
     this.setClosestExamData();
+    this.setGrades();
+  }
+
+  setGrades() {
+    this.grades.set(this.settings.gradesData().filter(x => x.fk_subject == this.extraSubjectData().fk_subject).map(x => x.grade))
+    console.log(this.grades());
   }
 
   setClosestExamData() {
