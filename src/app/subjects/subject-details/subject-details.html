@@ -32,17 +32,6 @@
    </div>
 
    <div class="info-container">
-    <div class="info-top-text">Noten</div>
-    <div class="info-main-text">
-    @if (extraSubjectData()?.grades == 0) {
-      /
-    }@else {
-      {{ extraSubjectData()?.grades }}
-    }
-    </div>
-   </div>
-
-   <div class="info-container">
     <div class="info-top-text">Nächste Prüfung</div>
     <div class="info-main-text">
     @if (closestExam()) {
@@ -54,7 +43,24 @@
    </div>
 
   </div>
-
-  <div class="center-row-container"></div>
+  <div class="center-row-container">
+    <div class="bottom-row-container">
+      <div class="grade-container">
+      <div class="info-top-text">Noten</div>
+      @if (grades().length > 0) {
+          <div class="grade-grid">
+            @for (grade of grades(); track $index) {
+              <div class="grade-item"><span [class]="'circle-' + settings.getGradeColor(grade)">{{ grade }}</span></div>
+            }
+          </div>
+        }@else {
+          <div class="info-main-text">/</div>
+        }
+        </div>
+        <div class="homework-container">
+        <div class="info-top-text">Hausaufgaben</div>
+        </div>
+    </div>
+  </div>
   <div class="right-row-container"></div>
 </div>
