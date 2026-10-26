@@ -69,13 +69,7 @@
   font-size: 20px;
   margin-right: 5px;
 }
-
-.container-options {
-  display: flex;
-  justify-content: space-between;
-
-}
-
+  
 .grade button {
   padding: 10px;
   width: 30px;
@@ -84,6 +78,13 @@
   justify-content: center;
   align-items: center;
 }
+
+.container-options {
+  display: flex;
+  justify-content: space-between;
+
+}
+
 
 .new-grade {
   padding: 10px;
@@ -104,27 +105,6 @@
   background-color: var(--danger-hover);
 }
 
-.circle-orange{
-  background-color: var(--orange);
-}
-
-.circle-orange:hover {
-  background-color: var(--orange-hover);
-}
-
-.circle-green {
-  background-color: var(--green-button)
-}
-.circle-green:hover {
-  background-color: var(--green-hover);
-}
-
-.circle-red {
-  background-color: var(--danger);
-}
-.circle-red:hover {
-  background-color: var(--danger-hover);
-}
 
 .white-img{
   filter: brightness(0) invert(1);
@@ -153,4 +133,3 @@
   width: 20px;
   margin: 5px;
 }
-
