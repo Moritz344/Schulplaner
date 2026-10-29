@@ -14,16 +14,18 @@
     </select>
   </div>
     <div class="container-options-middle">
-      <input
-        style="font-size: 20px"
-        spellcheck="false"
-        [ngModel]="searchParams().text"
-        (ngModelChange)="updateSearchParams({ text: $event })"
-        placeholder="Suche...">
-    </div>
-    <div class="container-options-right">
+      <div class="search-container">
+        <input
+          spellcheck="false"
+          [ngModel]="searchParams().text"
+          (ngModelChange)="updateSearchParams({ text: $event })"
+          placeholder="">
+       <button>
+        <img width="22" src="search.svg" class="white-img">
+       </button>
+      </div>
+      </div>
       <button (click)="onNewExam()">Neue Prüfung</button>
-    </div>
 </div>
 
   <div class="exams-container">

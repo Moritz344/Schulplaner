@@ -10,6 +10,7 @@
   --about-bg: #212125;
   --bg-panel: #252525;
   --bg-color: #1e1e1e;
+  --focus-color: #3C9FD2;
   --surface-color: #2d2d2d;
   --accent-color: #3584e4;
   --accent-hover: #62a0ea;
@@ -34,8 +35,8 @@
   --green-bright: #33d17a;
   --ghost: rgba(255, 255, 255, 0.1);
   --ghost-hover: rgba(255, 255, 255, 0.15);
-  --dialog-bg: #2d2d2d;
-  --dialog-header-bg: #353535;
+  --dialog-bg: #36363a;
+  --dialog-header-bg: #2e2e32;
   --yellow: #e5a50a;
   --yellow-hover: #f5c211;
   --orange: #e66100;
@@ -47,6 +48,11 @@
   --dialog-close-hover: rgba(255, 255, 255, 0.1);
 }
 
+
+
+.white-img{
+  filter: brightness(0) invert(1);
+}
 textarea {
   background-color: var(--bg-card);
   border-radius: 6px;
@@ -119,15 +125,6 @@ button:hover {
   background-color: var(--ghost-hover);
 }
 
-@keyframes fadeOut  {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
 
 @keyframes enterPopup {
   0% {
@@ -145,26 +142,27 @@ button:hover {
 }
 
 
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
+@keyframes leavePopup {
+  0% {
     opacity: 1;
+    transform: translate(var(--enter-popup-x, 0), var(--enter-popup-to-y, 0));
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--enter-popup-x, 0), var(--enter-popup-from-y, 20px));
   }
 }
 
-.enter-animation{
-  animation: 0.2s fadeIn;
-}
+
+
+
 
 .enter-popup {
-  animation: 0.4s enterPopup;
+  animation: 0.3s enterPopup;
 }
 
-.leave-animation{
-  animation: 0.2s fadeOut ease-out;
+.leave-popup {
+  animation: 0.2s leavePopup forwards;
 }
 
 
@@ -238,18 +236,39 @@ img {
   align-items: center;
 }
 
+.search-container {
+  position: relative;
+  flex: 1;
+  display: flex;
+}
+
+.search-container input {
+  font-size: 20px; width: 100%; height: 100%; padding-left: 40px;
+}
+
+.search-container button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0px;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+}
+
 input {
   background-color: var(--input-color);
   font-family: var(--default-font);
   outline: none;
   resize: none;
-  border: none;
+  border: transparent;
   color: var(--text-color);
   overflow: hidden;
   border-radius: var(--radius);
   padding: 8px 12px;
   font-size: 14px;
 }
+
 
 ::-webkit-scrollbar {
   background-color: transparent;

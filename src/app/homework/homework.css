@@ -10,8 +10,9 @@
 .placeholder {
   display: flex;
   flex-direction: column;
+  margin-top: 200px;
+  justify-content: center;
   align-items: center;
-  margin-top: 100px;
 }
 
 .slim-rect {
@@ -38,9 +39,6 @@
   justify-content: right;
 }
 
-.white-img{
-  filter: brightness(0) invert(1);
-}
 
 
 
@@ -51,11 +49,10 @@
   width: 100%;
   box-sizing: border-box;
   height: auto;
-  max-height: 92vh;
+  max-height: 90vh;
   overflow-y: scroll;
   padding: 10px;
   border-radius: 10px;
-
 }
 
 .homework-header {
@@ -71,23 +68,30 @@
 
 .container-options {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
+  align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
 }
-
 
 .container-options-left {
   display: flex;
   gap: 10px;
+  flex-shrink: 0;
 }
 
 .container-options-right {
   display: flex;
+  margin-left: auto;         
+  flex-shrink: 0;
 }
 
 .container-options-middle {
   display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+  min-width: 150px;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .left-content {

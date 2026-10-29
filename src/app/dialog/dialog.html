@@ -1,6 +1,10 @@
+@if (dialogService.show()) {
 <div class="screen"></div>
-<div class="container">
+<div class="container" animate.enter="enter-popup" animate.leave="leave-popup">
   <h1 class="header">{{ dialogService.header() }}</h1>
+  <div class="close">
+    <button (click)="dialogService.close()"><img src="close.svg"></button>
+  </div>
   @if (dialogService.type() == "new-homework") {
     <div class="new-homework-container">
       <div class="new-content">
@@ -154,3 +158,4 @@
     </div>
   }
 </div>
+}

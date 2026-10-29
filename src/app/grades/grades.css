@@ -89,12 +89,8 @@
 .new-grade {
   padding: 10px;
   margin-bottom: 10px;
-  background-color: var(--accent-color)
 }
 
-.new-grade:hover {
-  background-color: var(--accent-hover);
-}
 
 .reset-grade {
   padding: 10px;

@@ -15,16 +15,18 @@
         </select>
       </div>
       <div class="container-options-middle">
+      <div class="search-container">
         <input
-          style="font-size: 20px"
           spellcheck="false"
           [ngModel]="searchParams().text"
           (ngModelChange)="updateSearchParams({ text: $event })"
-          placeholder="Suche...">
+          placeholder="">
+       <button>
+        <img width="22" src="search.svg" class="white-img">
+       </button>
       </div>
-      <div class="container-options-right">
-        <button (click)="onAddHomework()">Neue Hausaufgabe</button>
       </div>
+      <button (click)="onAddHomework()">Neue Hausaufgabe</button>
     </div>
     @if (homeworkData().length > 0) {
       @for (h of homeworkData(); track $index) {
@@ -55,6 +57,7 @@
       }
     }@else {
       <div class="placeholder">
+        <img src="pencil.svg" class="white-img" width="70">
         <h1>Keine Hausaufgaben gefunden</h1>
         <p>Füge über "Neue Hausaufgabe" eine Hausaufgabe hinzu</p>
       </div>
