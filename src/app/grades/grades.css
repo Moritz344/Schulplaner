@@ -27,9 +27,6 @@
   font-size: 50px;
 }
 
-.average-container button:hover{
-  background-color: var(--green-button);
-}
 
 .average-container button:active{
   transform: none;
