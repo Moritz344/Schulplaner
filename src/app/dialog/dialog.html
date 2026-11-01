@@ -61,7 +61,7 @@
   }@else if (dialogService.type() == "new-grade") {
     <div>
       <div class="new-content">
-        <span>Note</span>
+        <span style="margin-left: 20px">Note</span>
         <div class="grade-container">
           @for (g of grades(); track $index) {
             <div class="grade-item">
@@ -84,8 +84,8 @@
             </div>
           }
         </div>
-        <span>Fach</span>
-        <select [(ngModel)]="newGradeData().fk_subject" >
+        <span style="margin-left: 20px">Fach</span>
+        <select [(ngModel)]="newGradeData().fk_subject" style="width: 350px;margin-left: 20px" >
         @for (subject of settings.subjectData(); track $index) {
           <option [value]="subject.id">{{ subject.name }}</option>
         }
@@ -155,6 +155,21 @@
       <div class="options-container">
         <button (click)="dialogService.close()">Schließen</button>
       </div>
+    </div>
+  } @else if (dialogService.type() == "new-subject") {
+    <div>
+      <div class="new-content">
+        <input placeholder="Name">
+        <select>
+          @for (color of settings.subjectColors(); track $index) {
+            <option>{{ color }}</option>
+          }
+        </select>
+      </div>
+        <div class="options-container">
+          <button (click)="onSaveNewSubject()">Speichern</button>
+          <button (click)="dialogService.close()">Abbrechen </button>
+        </div>
     </div>
   }
 </div>

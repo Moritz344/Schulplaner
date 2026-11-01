@@ -81,6 +81,7 @@ input,select {
 .grade-container {
   display: grid;
   grid-template-columns: repeat(6,60px);
+  margin-left: 20px;
 }
 
 
