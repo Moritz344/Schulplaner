@@ -162,13 +162,18 @@ export class Settings {
     await this.initTimetableData();
   }
 
+  calculateDaysLeftForExamEntry(itemDate: number) {
+    const startOfToday = new Date();
+    startOfToday.setHours(0, 0, 0, 0);
+    return Math.round((new Date(itemDate).setHours(0, 0, 0, 0) - startOfToday.getTime()) / 86400000)
+  }
 
   async initExamsData() {
     this.examsData.set(await this.electron.getExam());
     this.examsData.update(exam => 
       exam.map(item => ({
         ...item,
-        daysLeft: item.date ? new Date(item.date).getDate() - new Date().getDate() : -1,
+        daysLeft: item.date ? this.calculateDaysLeftForExamEntry(item.date): -1,
         subjectData: this.getSubjectDataFromId(item.fk_subject)
       }))
     )
