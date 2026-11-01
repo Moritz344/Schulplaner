@@ -21,6 +21,7 @@ export class Settings {
   public subjectExtraData = signal<SubjectExtraDataEntry[]>([])
 
   public selectedSubject = signal<SubjectEntry | null>(null);
+  public readonly subjectColors = signal<string[]>(["Schwarz","Grün","Blau","Rot","Gelb","Grau","Orange","Lila"])
 
   public timetableConfig = signal<TimetableConfig>({
     id: 0,
@@ -100,18 +101,13 @@ export class Settings {
   }
 
   getClosestExamForSubject(id: number) {
-    if (this.examsData().length == 0) { return; }
-    const examsWithSubject = this.examsData().filter(x => x.fk_subject == id)
-    const examsWithSubjectDaysLeft = examsWithSubject.map(x => x.daysLeft)
-    let min = 0;
-    for (let i=0;i<examsWithSubjectDaysLeft.length;i++) {
-      const num = examsWithSubjectDaysLeft[i]!
-      if (num > min && num < min) {
-        min = num;
-      }
-    }
-    return examsWithSubject.find(x => x.daysLeft == min);
-  }
+    const upcomingExams = this.examsData().filter(x => x.fk_subject == id)
+      .filter(d => d.daysLeft !== undefined && d.daysLeft >= 0);
+    if (upcomingExams.length == 0) { return; }
+
+    const closest = Math.min(...upcomingExams.map(x => x.daysLeft!));
+    return upcomingExams.find(x => x.daysLeft == closest);
+}
 
   initSubjectExtraData() {
     const data = [];
