@@ -67,6 +67,7 @@ export class Dialog implements OnInit {
   onResetGrades() {
     this.electron.resetGrades();
     this.settings.initGradesData();
+    this.settings.averageGrade.set(0);
     this.dialogService.close();
   }
 
@@ -76,6 +77,9 @@ export class Dialog implements OnInit {
     this.dialogService.close();
   }
 
+  onSaveNewSubject() {
+
+  }
 
   onUpdateGrade() {
     this.electron.updateGrade(this.dialogService.gradeDataToEdit());
