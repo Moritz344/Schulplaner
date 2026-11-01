@@ -24,13 +24,6 @@
   gap: 10px;
 }
 
-.container-options button {
-  background-color: var(--accent-color);
-}
-
-.container-options button:hover {
-  background-color: var(--accent-hover);
-}
 
 .subject-block {
   display: flex;
